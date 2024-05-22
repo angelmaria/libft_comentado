@@ -12,84 +12,74 @@
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static size_t	ft_numstring(const char *s, char c) // cuenta cuantas veces aparece el carácter c en la cadena s. También cuenta el número total de subcadenas separadas por c (es el mismo número)
 {
-	size_t	i;
-	char	*str;
+	size_t	count;
+	size_t	flag;
 
-	i = 0;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	while (i < len && s[start + i])
-	{
-		str[i] = s[start + i];
-		i++;
-	}
-	str[i] = 0;
-	return (str);
-}
-
-size_t	get_cnt(char const *s, char c) 
-{
-	size_t		cnt;
-
-	cnt = 0;
+	count = 0;
+	flag = 0;
+	if (!s)
+		return (0);
 	while (*s != '\0')
 	{
-		if (*s == c)
-			s++;
-		else
+		if (*s == c) // si el caracter al que apunta *s es igual que el caracter buscado c, resetamos flat a 0. Esto indica el final de una subcadena (los límites de las subcadenas los determina c). 
+			flag = 0;
+		else if (flag == 0)
 		{
-			cnt++;
-			while (*s != '\0' && *s != c) 
-				s++;
+			flag = 1;
+			count++;
 		}
+		s++;
 	}
-	return (cnt);
+	return (count);
 }
 
-char	**free_array(char **s, size_t idx) 
+static size_t	ft_numchar(const char *s, char c) // calcula la longitud de una subcadena en s hasta que se encuetra con el carácter c o el final de la cadena -si no encuentra a "c".
 {
-	while (s[idx] != NULL && idx >= 0)
-	{
-		free(s[idx]); 
-		s[idx] = NULL;
+	size_t	count;
 
-		idx--; 
-	}
-	free(s); 
-	s = NULL; 
+	count = 0;
+	while (s[count] != c && s[count] != '\0')
+		count++;
+	return (count);
+}
+
+static char	**ft_free_matrix(const char **matrix, size_t len_matrix) // esta función libera la memoria asignada a una matriz de cadenas (punteros a caracteres). Recorre la matriz y libera cada subcadena individual antes de liberar la matriz en sí. 
+{
+	while (len_matrix--)
+		free((void *)matrix[len_matrix]);
+	free(matrix);
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *s, char c) // divide la cadena s en subcadenas utilizando el carácter c como delimitador. Crea una matriz de punteros a caracteres para almacenar las subcadenas resultantes. 
 {
-	size_t		idx;
-	size_t		len;
-	size_t		word_cnt;
-	char		**words; 
+	char	**matrix;
+	size_t	len;
+	size_t	i;
+	size_t	sl;
 
-	if (!s || !(words = (char **)malloc(sizeof(char *) * (get_cnt(s, c) + 1)))) 
+	i = 0;
+	sl = 0;
+	len = ft_numstring(s, c); // calcula la cantidad de subcadenas necesarias
+	matrix = (char **)malloc(sizeof(char *) * (len + 1)); // asigna memoria para la matriz
+	if (!matrix)
 		return (NULL);
-	word_cnt = get_cnt(s, c);
-	idx = 0;
-	while (*s)
+	while (i < len)
 	{
-		if (*s == c)
+		while (*s == c) // itera sobre s, ignora los caracteres "c" al principio
 			s++;
-		else
-		{
-			len = 0;
-			while (*(s + len) && *(s + len) != c)
-				len++;
-			if (idx < word_cnt && !(words[idx++] = ft_substr(s, 0, len)))
-				return (free_array(words, idx));
-			s += len;
-		}
+		sl = ft_numchar((const char *)s, c); // calcula la longitud de la subcadena actual
+		matrix[i] = (char *)malloc(sizeof(char) * sl + 1); // asigna memoria para la subcadena 
+		if (!matrix[i])
+			return (ft_free_matrix((const char **)matrix, len));
+		ft_strlcpy(matrix[i], s, sl + 1); // copia la subcadena desde s
+		s = (ft_strchr(s, (int)c)); // avanza "s" al siguiente delimitador
+		i++;
 	}
-	words[idx] = 0;
-	return (words);
+	matrix[i] = 0; // establece el último elemento de la matriz en NULL.
+	return (matrix);
 }
 // Test (borrar)
 int main(void)
