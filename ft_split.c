@@ -23,7 +23,7 @@ static size_t	ft_count_substring(const char *s, char c) // cuenta cuantas veces 
 		return (0);
 	while (*s != '\0') // Inicia un bucle que se ejecuta mientras no se alcance el final de la cadena (\0).
 	{
-		if (*s == c) // si el carácter actual (al que apunta '*s') es igual que el delimitador (el carácter buscado 'c'), reiniciamos 'flat' a 0. Esto indica el final de una subcadena (los límites de las subcadenas los determina c). 
+		if (*s == c) // si el carácter actual (al que apunta '*s') es igual que el delimitador (el carácter buscado 'c'), reiniciamos 'substring' a 0. Esto indica el final de una subcadena (los límites de las subcadenas los determina c). 
 			substring = 0;
 		else if (substring == 0) // Si 'substring' es 0 y el carácter actual no es el delimitador, establece 'substring' a 1 e incrementa 'count'.
 		{
@@ -47,7 +47,7 @@ static size_t	ft_numchar(const char *s, char c) // Fx estática cuyo alcance est
 
 static char	**ft_free_matrix(const char **matrix, size_t len_matrix) // También es una función estática. Devuelve un puntero a un puntero a 'char', que es cómo se representa una matriz de cadenas en C. Toma dos parámetros: un puntero a un puntero a 'char' que apunta a matrix, una matriz de cadenas, y un 'size_t' 'len_matrix' que representa la longitud de la matriz. Esta función libera la memoria asignada a una matriz de cadenas (punteros a caracteres). Recorre la matriz y libera cada subcadena individual antes de liberar la matriz en sí. 
 {
-	while (len_matrix--) // Este bucle while se ejecuta mientras 'len_matrix' sea mayor que 0. En cada iteración, decrementa 'len_matrix' y luego libera la subcadena en la posición 'len_matrix' de la matriz.
+	while (len_matrix--) // Este bucle 'while' se ejecuta mientras 'len_matrix' sea mayor que 0. En cada iteración, decrementa 'len_matrix' y luego libera la subcadena en la posición 'len_matrix' de la matriz.
 		free((void *)matrix[len_matrix]);
 	free(matrix); // Después de liberar todas las subcadenas, esta línea libera la memoria asignada a la matriz misma.
 	return (NULL); // La función devuelve NULL después de liberar la memoria, lo que es útil para evitar que se acceda a la memoria ya liberada.
@@ -71,7 +71,7 @@ char	**ft_split(const char *s, char c) // divide la cadena s en subcadenas utili
 		while (*s == c) // itera sobre 's' (avanza el puntero 's'), ignorando los delimitadores 'c' al principio de la cadena. 
 			s++;
 		sl = ft_numchar((const char *)s, c); // calcula la longitud de la subcadena actual en 's' hasta el próximo delimitador. 
-		matrix[i] = (char *)malloc(sizeof(char) * sl + 1); // asigna memoria para la subcadena actual, resevando 'sl + 1' caracteres, donde el +1 es para el carácter nulo '\0' al final de la cadena.  
+		matrix[i] = (char *)malloc(sizeof(char) * sl + 1); // asigna memoria para la subcadena actual, reservando 'sl + 1' caracteres, donde el +1 es para el carácter nulo '\0' al final de la cadena.  
 		if (!matrix[i]) // Si la asignación de memoria falla, se llama a 'ft_free_matrix' para liberar la memoria previamente asignada y se devuelve 'NULL'.
 			return (ft_free_matrix((const char **)matrix, len));
 		ft_strlcpy(matrix[i], s, sl + 1); // copia la subcadena desde 's' a matrix[i] utilizando ft_strlcpy.
