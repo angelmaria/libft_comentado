@@ -15,19 +15,19 @@
 static size_t	ft_count_substring(const char *s, char c) // cuenta cuantas veces aparece el carácter 'c' en la cadena 's', o lo que es lo mismo: el número total de subcadenas separadas por 'c'.
 {
 	size_t	count; // declaración de variable para contar subcadenas.
-	size_t	flag; // declaración de variable para marcar el inicio de una nueva subcadena.
+	size_t	substring; // declaración de variable para marcar el inicio de una nueva subcadena.
 
 	count = 0;
-	flag = 0;
+	substring = 0;
 	if (!s) // Si la cadena 's' es 'NULL', retorna 0, indicando que no hay subcadenas.
 		return (0);
 	while (*s != '\0') // Inicia un bucle que se ejecuta mientras no se alcance el final de la cadena (\0).
 	{
 		if (*s == c) // si el carácter actual (al que apunta '*s') es igual que el delimitador (el carácter buscado 'c'), reiniciamos 'flat' a 0. Esto indica el final de una subcadena (los límites de las subcadenas los determina c). 
-			flag = 0;
-		else if (flag == 0) // Si 'flag' es 0 y el carácter actual no es el delimitador, establece 'flag' a 1 e incrementa 'count'.
+			substring = 0;
+		else if (substring == 0) // Si 'substring' es 0 y el carácter actual no es el delimitador, establece 'substring' a 1 e incrementa 'count'.
 		{
-			flag = 1;
+			substring = 1;
 			count++;
 		}
 		s++; // Avanza al siguiente carácter de la cadena.
