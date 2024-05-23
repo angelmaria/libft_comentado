@@ -19,22 +19,22 @@
 #include "libft.h"
 #include <stdio.h>
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str) // toma como argumento una cadena de caracteres constante. 
 {
-	int	res;
-	int	sign;
+	int	res; // declara una variable "res" para almacenar el resultado final. 
+	int	sign; // declara una variable "sign" para almacenar el signo del número, 1 para positivo o -1 para negativo
 
 	res = 0;
-	sign = 1;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
+	sign = 1; 
+	while (*str == 32 || (*str >= 9 && *str <= 13)) // mientras el caracter actual sea un espacio (ASCII 32) o un caracter de control (tabulación, nueva línea, horital o vertical tabulador, etc=)
 		str++;
 	if (*str == '-')
-		sign *= -1;
+		sign *= -1; // multiplica 'sign' por -1 para cambiar el signo a negativo. 
 	if (*str == '-' || *str == '+')
 		str++;
 	while (*str >= '0' && *str <= '9')
 	{
-		res = res * 10 + *str - '0';
+		res = res * 10 + *str - '0'; // ... multiplica por 10 (desplaza un lugar en decimal) y suma el valor numérico del caracter actual. 
 		str++;
 	}
 	return (res * sign);
