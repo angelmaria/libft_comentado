@@ -53,54 +53,53 @@ static char	**ft_free_matrix(const char **matrix, size_t len_matrix) // También
 	return (NULL); // La función devuelve NULL después de liberar la memoria, lo que es útil para evitar que se acceda a la memoria ya liberada.
 }
 
-char	**ft_split(const char *s, char c) // divide la cadena s en subcadenas utilizando el carácter c como delimitador. Crea una matriz de punteros a caracteres para almacenar las subcadenas resultantes. 
+char	**ft_split(const char *s, char c) // divide la cadena s en subcadenas utilizando el carácter 'c' como delimitador. Crea una matriz de punteros a caracteres para almacenar las subcadenas resultantes. 
 {
-	char	**matrix;
-	size_t	len;
-	size_t	i;
-	size_t	sl;
+	char	**matrix; // un puntero a un puntero a 'char' para almacenar la matriz de subcadenas.
+	size_t	len; // de tipo size_t, para almacenar la cantidad de subcadenas.
+	size_t	i; // de tipo size_t, para usar como índice en los bucles.
+	size_t	sl; // de tipo size_t, para almacenar la longitud de la subcadena actual.
 
 	i = 0;
 	sl = 0;
-	len = ft_count_substring(s, c); // calcula la cantidad de subcadenas necesarias
-	matrix = (char **)malloc(sizeof(char *) * (len + 1)); // asigna memoria para la matriz
-	if (!matrix)
+	len = ft_count_substring(s, c); // calcula la cantidad de subcadenas que se crearán a partir de 's' utilizando 'c como delimitador. 
+	matrix = (char **)malloc(sizeof(char *) * (len + 1)); // asigna memoria para la matriz 'matrix'. Se reserva espacio para 'len + 1' punteros a 'char', donde el +1 es para el puntero final 'NULL' que indica el final de la matriz.
+	if (!matrix) // Si malloc falla y matrix es 'NULL', la función devuelve 'NULL' para indicar un error en la asignación de memoria.
 		return (NULL);
-	while (i < len)
+	while (i < len) // Este bucle while se ejecutará mientras i sea menor que 'len', es decir, mientras haya subcadenas por procesar.
 	{
-		while (*s == c) // itera sobre s, ignora los caracteres "c" al principio
+		while (*s == c) // itera sobre 's' (avanza el puntero 's'), ignorando los delimitadores 'c' al principio de la cadena. 
 			s++;
-		sl = ft_numchar((const char *)s, c); // calcula la longitud de la subcadena actual
-		matrix[i] = (char *)malloc(sizeof(char) * sl + 1); // asigna memoria para la subcadena 
-		if (!matrix[i])
+		sl = ft_numchar((const char *)s, c); // calcula la longitud de la subcadena actual en 's' hasta el próximo delimitador. 
+		matrix[i] = (char *)malloc(sizeof(char) * sl + 1); // asigna memoria para la subcadena actual, resevando 'sl + 1' caracteres, donde el +1 es para el carácter nulo '\0' al final de la cadena.  
+		if (!matrix[i]) // Si la asignación de memoria falla, se llama a 'ft_free_matrix' para liberar la memoria previamente asignada y se devuelve 'NULL'.
 			return (ft_free_matrix((const char **)matrix, len));
-		ft_strlcpy(matrix[i], s, sl + 1); // copia la subcadena desde s
-		s = (ft_strchr(s, (int)c)); // avanza "s" al siguiente delimitador
-		i++;
+		ft_strlcpy(matrix[i], s, sl + 1); // copia la subcadena desde 's' a matrix[i] utilizando ft_strlcpy.
+		s = (ft_strchr(s, (int)c)); // avanza 's' (se actualiza el puntero) al siguiente delimitador 'c' en la cadena. 
+		i++; // Se incrementa el índice i para procesar la siguiente subcadena.
 	}
-	matrix[i] = 0; // establece el último elemento de la matriz en NULL.
-	return (matrix);
+	matrix[i] = 0; // establece el último elemento de la matriz 'matrix' en NULL para indicar el final de la matriz de subcadenas.
+	return (matrix); // Finalmente, la función devuelve la matriz matrix con las subcadenas resultantes.
 }
-// Test (borrar)
+// Test
 int main(void)
 {
-    char *frase = "Explorando el mundo de la programación en C";
-    char delimitador = ' '; // Suponiendo que queremos dividir la frase por espacios
-    char **palabras;
+    char **substrings;
+    const char *string_to_split = "esto es una prueba";
+    char delimiter = ' ';
 
-    palabras = ft_split(frase, delimitador);
-    if (!palabras)
+    substrings = ft_split(string_to_split, delimiter);
+
+    // Imprimir y liberar la memoria de las subcadenas
+    if (substrings)
     {
-        printf("Error: No se pudo dividir la frase.\n");
-        return (1);
+        for (int i = 0; substrings[i] != NULL; i++)
+        {
+            printf("Subcadena %d: %s\n", i, substrings[i]);
+            free(substrings[i]); // Liberar cada subcadena
+        }
+        free(substrings); // Liberar la matriz de subcadenas
     }
 
-    for (size_t i = 0; palabras[i] != NULL; i++)
-    {
-        printf("Palabra %zu: '%s'\n", i, palabras[i]);
-        free(palabras[i]); // Liberamos cada palabra individualmente
-    }
-    free(palabras); // Liberamos el arreglo de palabras
-
-    return (0);
+    return 0;
 }
