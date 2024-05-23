@@ -12,45 +12,45 @@
 
 #include "libft.h"
 
-static size_t	ft_numstring(const char *s, char c) // cuenta cuantas veces aparece el carácter c en la cadena s. También cuenta el número total de subcadenas separadas por c (es el mismo número)
+static size_t	ft_count_substring(const char *s, char c) // cuenta cuantas veces aparece el carácter 'c' en la cadena 's', o lo que es lo mismo: el número total de subcadenas separadas por 'c'.
 {
-	size_t	count;
-	size_t	flag;
+	size_t	count; // declaración de variable para contar subcadenas.
+	size_t	flag; // declaración de variable para marcar el inicio de una nueva subcadena.
 
 	count = 0;
 	flag = 0;
-	if (!s)
+	if (!s) // Si la cadena 's' es 'NULL', retorna 0, indicando que no hay subcadenas.
 		return (0);
-	while (*s != '\0')
+	while (*s != '\0') // Inicia un bucle que se ejecuta mientras no se alcance el final de la cadena (\0).
 	{
-		if (*s == c) // si el caracter al que apunta *s es igual que el caracter buscado c, resetamos flat a 0. Esto indica el final de una subcadena (los límites de las subcadenas los determina c). 
+		if (*s == c) // si el carácter actual (al que apunta '*s') es igual que el delimitador (el carácter buscado 'c'), reiniciamos 'flat' a 0. Esto indica el final de una subcadena (los límites de las subcadenas los determina c). 
 			flag = 0;
-		else if (flag == 0)
+		else if (flag == 0) // Si 'flag' es 0 y el carácter actual no es el delimitador, establece 'flag' a 1 e incrementa 'count'.
 		{
 			flag = 1;
 			count++;
 		}
-		s++;
+		s++; // Avanza al siguiente carácter de la cadena.
 	}
-	return (count);
+	return (count); // Retorna el número total de subcadenas encontradas.
 }
 
-static size_t	ft_numchar(const char *s, char c) // calcula la longitud de una subcadena en s hasta que se encuetra con el carácter c o el final de la cadena -si no encuentra a "c".
+static size_t	ft_numchar(const char *s, char c) // Fx estática cuyo alcance está limitado al archivo de código fuente en el que se define. Devuelve un size_t -tipo de dato entero sin signo usado para representar tamaños-, y toma dos parámetros: un puntero a 'char' que apunta a una cadena 's', y un 'char c' que representa el delimitador. Esta fx cuenta los caracteres hasta el próximo delimitador (la longitud de una subcadena en 's' hasta toparse con 'c') o el final de la cadena (si no encuentra el delimitador), lo que ocurra primero. 
 {
-	size_t	count;
+	size_t	count; // Se declara una variable count de tipo size_t que se utilizará para contar los caracteres.
 
-	count = 0;
-	while (s[count] != c && s[count] != '\0')
+	count = 0; // Inicializamos count en 0. Este será el contador que incrementaremos hasta encontrar el delimitador o el final de la cadena.
+	while (s[count] != c && s[count] != '\0') // Este bucle 'while' continúa mientras el carácter actual en la posición 'count' de la cadena 's' no sea el delimitador 'c' y tampoco sea el carácter nulo '\0', que indica el final de la cadena. En cada iteración, incrementamos 'count'.
 		count++;
-	return (count);
+	return (count); // Finalmente, la función devuelve el valor de 'count', que es la cantidad de caracteres hasta el delimitador o el final de la cadena.
 }
 
-static char	**ft_free_matrix(const char **matrix, size_t len_matrix) // esta función libera la memoria asignada a una matriz de cadenas (punteros a caracteres). Recorre la matriz y libera cada subcadena individual antes de liberar la matriz en sí. 
+static char	**ft_free_matrix(const char **matrix, size_t len_matrix) // También es una función estática. Devuelve un puntero a un puntero a 'char', que es cómo se representa una matriz de cadenas en C. Toma dos parámetros: un puntero a un puntero a 'char' que apunta a matrix, una matriz de cadenas, y un 'size_t' 'len_matrix' que representa la longitud de la matriz. Esta función libera la memoria asignada a una matriz de cadenas (punteros a caracteres). Recorre la matriz y libera cada subcadena individual antes de liberar la matriz en sí. 
 {
-	while (len_matrix--)
+	while (len_matrix--) // Este bucle while se ejecuta mientras 'len_matrix' sea mayor que 0. En cada iteración, decrementa 'len_matrix' y luego libera la subcadena en la posición 'len_matrix' de la matriz.
 		free((void *)matrix[len_matrix]);
-	free(matrix);
-	return (NULL);
+	free(matrix); // Después de liberar todas las subcadenas, esta línea libera la memoria asignada a la matriz misma.
+	return (NULL); // La función devuelve NULL después de liberar la memoria, lo que es útil para evitar que se acceda a la memoria ya liberada.
 }
 
 char	**ft_split(const char *s, char c) // divide la cadena s en subcadenas utilizando el carácter c como delimitador. Crea una matriz de punteros a caracteres para almacenar las subcadenas resultantes. 
@@ -62,7 +62,7 @@ char	**ft_split(const char *s, char c) // divide la cadena s en subcadenas utili
 
 	i = 0;
 	sl = 0;
-	len = ft_numstring(s, c); // calcula la cantidad de subcadenas necesarias
+	len = ft_count_substring(s, c); // calcula la cantidad de subcadenas necesarias
 	matrix = (char **)malloc(sizeof(char *) * (len + 1)); // asigna memoria para la matriz
 	if (!matrix)
 		return (NULL);
