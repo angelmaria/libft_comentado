@@ -26,7 +26,7 @@ int	ft_atoi(const char *str) // toma como argumento una cadena de caracteres con
 
 	res = 0;
 	sign = 1; 
-	while (*str == 32 || (*str >= 9 && *str <= 13)) // mientras el caracter actual sea un espacio (ASCII 32) o un caracter de control (tabulación, nueva línea, horital o vertical tabulador, etc=)
+	while (*str == 32 || (*str >= 9 && *str <= 13)) // mientras el caracter actual sea un espacio (ASCII 32) o un caracter de control (tabulación, nueva línea, tabulador horizontal o vertical, etc=)
 		str++;
 	if (*str == '-')
 		sign *= -1; // multiplica 'sign' por -1 para cambiar el signo a negativo. 
