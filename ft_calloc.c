@@ -25,10 +25,10 @@ int main(void)
     int n;
     int i;
 
-    // Definir el número de elementos del arreglo
+    // Definir el número de elementos del array
     n = 5;
 
-    // Usar ft_calloc para asignar memoria para el arreglo
+    // Usar ft_calloc para asignar memoria para el array
     array = (int *)ft_calloc(n, sizeof(int));
 
     // Comprobar si ft_calloc retornó NULL
