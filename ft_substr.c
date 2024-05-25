@@ -25,7 +25,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len) // toma tres argu
 		return (ft_strdup(""));
 	if (len > s_len - start) // ajusta la longitud "len" si es mayor que la cantidad de caracteres disponibles desde "start" hasta el final de la cadena. 
 		len = s_len - start;
-	substr = (char *)malloc(sizeof(char) * (len + 1)); // asigna memoria dinámica par ala subcadena utilizando "malloc". La longitud es "len + 1" para incluir el carácter n ulo al final. 
+	substr = (char *)malloc(sizeof(char) * (len + 1)); // asigna memoria dinámica par ala subcadena utilizando "malloc". La longitud es "len + 1" para incluir el carácter nulo al final. 
 	if (!substr) // verifica si la asignación de memoria fue exitosa. Si no, devuelve NULL. 
 		return (NULL);
 	i = 0;
@@ -34,7 +34,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len) // toma tres argu
 		substr[i] = s[start + i]; // copia el carácter actual de "s" a la posición correspondiente en "substr".
 		i++;
 	}
-	substr[i] = 0;
+	substr[i] = 0; // establece el último carácter de la subcadena en nulo, lo que marca el final de la cadena. Es esencial para que la subcadena sea correctamente terminada
 	return (substr); // devuelve el puntero a la subcadena extraída. 
 }
 // En resumen, esta fx extrae una subcadena "s" comenzando desde la posición "start" y con una longitud máxima de "len". Si "s" es nula o si "start" está fuera de los límites, devuelve una cadena vacía. 

@@ -15,9 +15,9 @@ int	ft_strncmp(const char *s1, char *s2, size_t n)
 // Test
 int main(void)
 {
-	const char *str1 = "Hello, world!";
-	const char *str2 = "Hello, there!";
-	size_t n = 5; // Número de caracteres a comparar
+	const char *str1 = "test\200";
+	const char *str2 = "test\0";
+	size_t n = 6; // Número de caracteres a comparar
 
 	int result = ft_strncmp(str1, str2, n);
 
