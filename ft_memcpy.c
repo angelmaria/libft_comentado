@@ -47,3 +47,16 @@ void	*ft_memcpy(void *dest, const void *src, size_t n) // toma 3 argumentos: un 
 // 	}
 // 	return (dest);
 // }
+// Test
+int main(void)
+{
+	char src[] = "Hello, world!";
+	char dest[20]; // Asegúrate de que el tamaño del destino sea suficiente para copiar la cadena
+
+	// Llamada a ft_memcpy
+	ft_memcpy(dest, src, strlen(src) + 1); // +1 para copiar el carácter nulo al final
+
+	printf("Cadena copiada: %s\n", dest);
+
+	return 0;
+}

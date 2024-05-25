@@ -7,8 +7,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (!new || !lst) // Comprueba si el nuevo nodo o la lista son nulos. Si alguno lo es, termina la función.
 		return ;
 	if (!(*lst)) // Si la lista está vacía (el puntero al primer nodo es nulo),
-		*lst = new; // establece el nuevo nodo como el primer nodo de la lista.
-    else // Si la lista no está vacía,
+		*lst = new; // establece el nuevo nodo como el primer (y último) nodo de la lista.
+    else // Si la lista NO está vacía,
 	{
 		last = ft_lstlast(*lst); // encuentra el último nodo actual de la lista.
 		last->next = new; // Establece el campo 'next' del último nodo para que apunte al nuevo nodo.

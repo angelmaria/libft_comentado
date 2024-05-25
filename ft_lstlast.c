@@ -1,11 +1,11 @@
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstlast(t_list *lst) // toma un puntero a una estructura t_list como argumento.
 {
-	if (!lst)
+	if (!lst) // Si el puntero lst es NULL, lo que significa que la lista está vacía, la función devuelve NULL.
 		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
+	while (lst->next != NULL) // Este bucle while continúa hasta que el campo next del nodo actual es NULL, lo que indica que ha llegado al final de la lista. En cada iteración, mueve el puntero lst al siguiente nodo.
+		lst = lst->next; // Una vez que el bucle encuentra el último nodo (donde next es NULL), devuelve ese nodo.
 	return (lst);
 }
 // Test (borrar)

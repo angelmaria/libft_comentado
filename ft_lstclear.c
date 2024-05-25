@@ -1,19 +1,22 @@
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst, void (*del)(void *)) // toma dos parámetros: un doble puntero a t_list y un puntero a una función del.
 {
-	t_list	*curr;
+	t_list	*curr; // Declara un puntero a t_list para usarlo como variable actual en el bucle.
 
-	if (!lst || !(*lst) || !del)
+	if (!lst || !(*lst) || !del) // Comprueba si alguno de los parámetros es NULL. Si es así, sale de la función.
 		return ;
-	while (*lst != NULL)
+	while (*lst != NULL) // Mientras la lista no esté vacía...
 	{
-		curr = *lst;
-		*lst = (*lst)->next;
-		ft_lstdelone(curr, del);
+		curr = *lst; // Establece curr como el primer elemento de la lista.
+		*lst = (*lst)->next; // Avanza lst al siguiente elemento de la lista.
+		ft_lstdelone(curr, del); // Llama a ft_lstdelone para eliminar y liberar la memoria del elemento actual, usando la función del.
 	}
 }
-// Test (borra)
+/* La función del es un puntero a otra función que se encarga de liberar la memoria del contenido de cada nodo de la lista. Esto permite que ft_lstclear sea flexible y pueda manejar listas de diferentes tipos de datos, ya que el usuario puede proporcionar su propia función de eliminación adaptada al tipo de datos que contiene la lista.
+
+En resumen, ft_lstclear recorre la lista enlazada y elimina cada nodo utilizando la función del proporcionada por el usuario, liberando así toda la memoria asociada con la lista. Es importante que la función del esté bien definida para evitar fugas de memoria. */
+// Test
 // Función auxiliar para liberar el contenido de un nodo
 void del(void *content)
 {

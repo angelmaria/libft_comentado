@@ -29,3 +29,27 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n) // toma 3 parámetros: u
 	}
 	return (0); // si se termina el bucle y no se encontraron diferencias, la fx devuelve 0, indicando que los dos bloques de memoria son iguales en los primeros 'n' bytes. 
 }
+int main(void)
+{
+	const char *str1 = "Hello, world!";
+	const char *str2 = "Hello, there!";
+	size_t compare_length = strlen(str1); // Asumimos que ambas cadenas tienen la misma longitud
+
+	// Llamada a ft_memcmp
+	int result = ft_memcmp(str1, str2, compare_length);
+
+	if (result == 0)
+	{
+		printf("Las cadenas son iguales.\n");
+	}
+	else if (result < 0)
+	{
+		printf("La cadena 1 es menor que la cadena 2.\n");
+	}
+	else
+	{
+		printf("La cadena 1 es mayor que la cadena 2.\n");
+	}
+
+	return 0;
+}

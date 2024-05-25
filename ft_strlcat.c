@@ -23,6 +23,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
     // Retorna la longitud total que tendría la cadena dst si se hubiera dado suficiente espacio.
 	return (i + strlen(src));
 }
+/*
+strjoin crea una nueva cadena concatenando dos cadenas existentes, mientras que strlcat agrega una cadena al final de otra. Además, strlcat es más seguro y garantiza la terminación nula del resultado
+*/
 // Test (borrar)
 int main(void)
 {

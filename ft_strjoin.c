@@ -1,5 +1,6 @@
 #include "libft.h"
 #include <stdio.h>
+// toma dos cadenas de caracteres como argumentos (s1 y s2) y crea una nueva cadena que es el resultado de la concatenación de ambas.
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

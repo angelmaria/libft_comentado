@@ -1,7 +1,7 @@
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char)) // char: El tipo de retorno de la función f. Significa que la función f devolverá un carácter.
-// (*f): Esto indica que f es un puntero a una función. Se escribe (*f) en lugar de char *(f) porque queremos que f sea un puntero a una función que devuelve un char, no una función que devuelve un puntero a un char.
+// (*f): Esto indica que f es un puntero a una función. Se escribe (*f) en lugar de char *(f) porque queremos que f sea UN PUNTERO A UNA FUNCIÓN que devuelve un char, no una función que devuelve un puntero a un char.
 // En la definición de la función, tendrás que proporcionar nombres a los parámetros para poder referirte a ellos dentro del cuerpo de la función. Pero en la declaración, especialmente en los archivos de cabecera (header files), es común ver funciones sin nombres de parámetros, lo que ayuda a mantener el código limpio y enfocado en los tipos de datos y la funcionalidad.
 {
 	unsigned int	i;

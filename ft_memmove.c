@@ -91,3 +91,15 @@ void	*ft_memmove(void *dst, const void *src, size_t len) // Esta función intent
 // 	}
 // 	return (dest);
 // }
+int main(void)
+{
+	char src[] = "Hello, world!";
+	char dest[20]; // Asegúrate de que el tamaño del destino sea suficiente para la operación
+
+	// Llamada a ft_memmove (copia desde src a dest)
+	ft_memmove(dest, src, strlen(src) + 1); // +1 para copiar el carácter nulo al final
+
+	printf("Cadena copiada: %s\n", dest);
+
+	return 0;
+}

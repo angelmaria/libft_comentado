@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+// La función ft_strlcpy copia una cadena de caracteres (src) en otra (dest), pero con una particularidad: siempre asegura que la cadena de destino esté terminada con el carácter nulo (\\0).
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size) // El tercer parámetro, size, representa el tamaño del búfer de destino (dest). Si size es 0, la función simplemente cuenta la longitud de la cadena fuente (src) y devuelve ese valor.
 {
 	size_t	i;
 

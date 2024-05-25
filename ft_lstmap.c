@@ -22,7 +22,15 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *)) // ft_ls
 	}
 	return (lst2); // Una vez terminado el bucle, se devuelve la nueva lista lst2.
 }
-// Esta función es útil cuando quieres transformar los contenidos de una lista enlazada sin modificar la lista original. Es importante asegurarse de que las funciones f y del estén bien definidas para evitar fugas de memoria o comportamientos inesperados.
+// Esta función es útil cuando quieres transformar los contenidos de una lista enlazada sin modificar la lista original. Es importante asegurarse de que las funciones 'f' y 'del' estén bien definidas para evitar fugas de memoria o comportamientos inesperados.
+/* 
+El segundo parámetro de la función ft_lstmap tiene un propósito importante en el contexto de la creación de una nueva lista a partir de una lista original. Permíteme explicarte:
+
+La función ft_lstmap se utiliza para crear una nueva lista a partir de los elementos de una lista original. La nueva lista contendrá copias de los elementos transformados por la función que se pasa como primer parámetro (f).
+El segundo parámetro (del) es un puntero a una función que se utiliza para liberar la memoria asignada a los elementos de la nueva lista en caso de que ocurra un error durante la creación de la lista. Esto es importante para evitar fugas de memoria.
+Aunque la función ft_lstmap no modifica directamente la lista original, puede haber situaciones en las que ocurran errores al crear la nueva lista (por ejemplo, si no se puede asignar memoria para un nuevo nodo). En tales casos, la función del se invoca para liberar la memoria asignada a los elementos transformados antes de que la nueva lista sea completamente destruida.
+En resumen, el segundo parámetro (del) es crucial para garantizar la gestión adecuada de la memoria y prevenir posibles fugas de memoria durante la creación de la nueva lista. Aunque no afecta directamente a la lista original, su papel es fundamental para mantener la integridad del programa
+*/
 // Test (borrar)
 // Función para duplicar el contenido de un nodo.
 void *duplicate_content(void *content)

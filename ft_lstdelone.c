@@ -1,6 +1,7 @@
 #include "libft.h"
+// fx que se utiliza para eliminar un nodo específico de una lista enlazada
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void *)) // dos argumentos: un puntero al nodo que se desea eliminar, y un puntero a una función que se encarga de liberar la memoria del contenido del nodo. Esta función es necesaria porque el contenido del nodo puede ser de cualquier tipo y necesitamos una forma de liberarlo correctamente. 
 {
 	if (!lst || !del)
 		return ;

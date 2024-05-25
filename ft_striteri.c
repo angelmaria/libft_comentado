@@ -1,20 +1,21 @@
 #include "libft.h"
 #include <stdio.h>
+// Itera a través de la cadena 's' y aplica la función 'f' a cada carácter, pasando el índice del carácter como el primer argumento y un puntero al carácter como el segundo argumento.
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*)) // Toma dos parámetros:
 // char *s: Un puntero a una cadena de caracteres.
-// void (*f)(unsigned int, char*): Un puntero a una función que no devuelve ningún valor (void) y toma dos parámetros: un unsigned int y un puntero a un carácter (char*).
+// void (*f)(unsigned int, char*): Un puntero a una función que no devuelve ningún valor (void) y toma dos parámetros: un unsigned int y un puntero a un carácter (char*). 
 {
 	unsigned int	i;
 
 	i = 0;
 	while (s[i] != '\0')
 	{
-		f(i, s + i);
+		f(i, s + i); // Llama a la función f pasando i como el primer argumento y un puntero al carácter en la posición i como el segundo argumento.
 		i++;
 	}
 }
-// Test (borrar)
+// Test
 void print_char(unsigned int i, char *c)
 {
     printf("Índice %u: Carácter %c\n", i, *c);
@@ -31,6 +32,6 @@ int main(void)
 
 // La diferencia principal entre las funciones ft_striteri y ft_strmapi en C es cómo manejan la cadena de caracteres y qué devuelven:
 
-// ft_striteri: Esta función toma una cadena de caracteres s y aplica una función f a cada carácter de la cadena. La función f recibe el índice del carácter y un puntero al carácter, permitiendo modificar directamente el carácter en la cadena original. ft_striteri no devuelve nada; su propósito es realizar operaciones en la cadena original1.
+// ft_striteri: Esta función toma una cadena de caracteres s y aplica una función f a cada carácter de la cadena. La función f recibe el índice del carácter y un puntero al carácter, permitiendo modificar directamente el carácter en la cadena original. ft_striteri no devuelve nada; su propósito es realizar operaciones en la cadena original.
 // ft_strmapi: Similar a ft_striteri, ft_strmapi también aplica una función a cada carácter de una cadena. Sin embargo, en lugar de modificar la cadena original, ft_strmapi crea una nueva cadena con los resultados de aplicar la función f a cada carácter de la cadena original. La función f recibe el índice del carácter y el carácter mismo, y el resultado de f se coloca en la nueva cadena en el índice correspondiente. ft_strmapi devuelve un puntero a la nueva cadena creada.
 // En resumen, ft_striteri modifica la cadena original y no devuelve nada, mientras que ft_strmapi crea y devuelve una nueva cadena con los caracteres modificados por la función aplicada.
