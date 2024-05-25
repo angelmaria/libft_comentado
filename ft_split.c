@@ -93,10 +93,13 @@ int main(void)
     // Imprimir y liberar la memoria de las subcadenas
     if (substrings)
     {
-        for (int i = 0; substrings[i] != NULL; i++)
+		int i;
+		i = 0;
+		while (substrings[i] != NULL)
         {
             printf("Subcadena %d: %s\n", i, substrings[i]);
             free(substrings[i]); // Liberar cada subcadena
+			i++;
         }
         free(substrings); // Liberar la matriz de subcadenas
     }
