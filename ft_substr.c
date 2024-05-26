@@ -25,7 +25,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len) // toma tres argu
 		return (ft_strdup(""));
 	if (len > s_len - start) // ajusta la longitud "len" si es mayor que la cantidad de caracteres disponibles desde "start" hasta el final de la cadena. 
 		len = s_len - start;
-	substr = (char *)malloc(sizeof(char) * (len + 1)); // asigna memoria dinámica par ala subcadena utilizando "malloc". La longitud es "len + 1" para incluir el carácter nulo al final. 
+	substr = (char *)malloc(sizeof(char) * (len + 1)); // asigna memoria dinámica par a la subcadena utilizando "malloc". La longitud es "len + 1" para incluir el carácter nulo al final. 
 	if (!substr) // verifica si la asignación de memoria fue exitosa. Si no, devuelve NULL. 
 		return (NULL);
 	i = 0;

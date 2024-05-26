@@ -15,7 +15,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *)) // toma dos parámetros: un 
 }
 /* La función del es un puntero a otra función que se encarga de liberar la memoria del contenido de cada nodo de la lista. Esto permite que ft_lstclear sea flexible y pueda manejar listas de diferentes tipos de datos, ya que el usuario puede proporcionar su propia función de eliminación adaptada al tipo de datos que contiene la lista.
 
-En resumen, ft_lstclear recorre la lista enlazada y elimina cada nodo utilizando la función del proporcionada por el usuario, liberando así toda la memoria asociada con la lista. Es importante que la función del esté bien definida para evitar fugas de memoria. */
+En resumen, ft_lstclear recorre la lista enlazada y elimina cada nodo utilizando la función 'del' proporcionada por el usuario, liberando así toda la memoria asociada con la lista. Es importante que la función del esté bien definida para evitar fugas de memoria. */
 // Test
 // Función auxiliar para liberar el contenido de un nodo
 void del(void *content)

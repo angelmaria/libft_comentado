@@ -40,7 +40,7 @@ int main(void)
 {
 	const char *str = "Hello, world!";
 	int search_char = 'o';
-	size_t search_length = strlen(str);
+	size_t search_length = ft_strlen(str);
 
 	// Llamada a ft_memchr
 	const char *result = (const char *)ft_memchr(str, search_char, search_length);
