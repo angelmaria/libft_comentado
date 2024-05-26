@@ -20,3 +20,12 @@ int	ft_isalnum(int c)
 	else
 		return (0);
 }
+int main(void)
+{
+    int c = 'A'; // Cambia el valor de 'c' según el carácter que desees probar
+    int result = ft_isalnum(c);
+
+    printf("ft_isalnum('%c') = %d\n", c, result);
+
+    return 0;
+}

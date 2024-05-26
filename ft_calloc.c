@@ -1,22 +1,22 @@
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size) // 2 argumentos de tipo size_t: la cantidad de elementos y el tamaño de cada elemento respectivamente.
+void	*ft_calloc(size_t count, size_t size) // 2 argumentos de tipo size_t: la cantidad de elementos que deseamos asignar y el tamaño de cada elemento respectivamente.
 {
-	size_t	b; // almacena el tamaño total de bytes a asignar. 
-	void	*p; // puntero para apuntar al bloque de memoria asignado. 
+	size_t	total; // almacena el tamaño total de bytes a asignar. 
+	char	*mem; // puntero para apuntar al bloque de memoria asignado. 
+    size_t	i; // índice para acceder a cada byte.
 
-	if (count == 0 || size == 0)
-	{
-		count = 1; // establecer 'count' a 1 para asegurar que se asigne al menos un byte. 
-		size = 1; // establece 'size' a 1 por la misma razón. 
-	}
-	b = count * size; // calcula el tamaño total de b = multiplicando el número de elementos por su tamaño. 
-	p = malloc(b); // asigna memoria y almacena el puntero en 'p'.
-	if (p == NULL) // si 'malloc' falla y devuelve NULL...
+	total = count * size; // calcula el tamaño total de b = multiplicando el número de elementos por su tamaño. 
+	mem = malloc(total); // asigna memoria y almacena el puntero en 'p'.
+	if (total == NULL) // si 'malloc' falla y devuelve NULL...
 		return (NULL); // .. la fx devuelve NULL para indicar el fallo en la asignación de memoria.
-	else
-		ft_bzero(p, b); // si la asignación es exitosa, llama a 'ft_bzero' para establecer todos los bytes a cero. 
-	return (p); // devuelve el puntero al bloque de memoria asignado y inicializando a cero. 
+	i = 0;
+    while (i < total)
+    {
+        mem[i] = 0;
+        i++;
+    }
+	return (mem); // devuelve el puntero al bloque de memoria asignado y inicializando a cero. 
 }
 // Test (borrar)
 int main(void)

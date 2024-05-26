@@ -17,7 +17,6 @@
  */
 
 #include "libft.h"
-#include <stdio.h>
 
 int	ft_atoi(const char *str) // toma como argumento una cadena de caracteres constante. 
 {
