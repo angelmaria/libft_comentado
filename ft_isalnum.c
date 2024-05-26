@@ -29,3 +29,21 @@ int main(void)
 
     return 0;
 }
+/*
+Código con los 2 parámetros clásicos que se pasan al main, argc y argv
+int main(int argc, char *argv[])
+{
+    if (argc != 2)
+    {
+        printf("Uso: %s <caracter>\n", argv[0]);
+        return 1;
+    }
+
+    char c = argv[1][0];
+    int result = ft_isalnum(c);
+
+    printf("ft_isalnum('%c') = %d\n", c, result);
+
+    return 0;
+}
+*/

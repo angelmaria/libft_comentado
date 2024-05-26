@@ -7,7 +7,7 @@ void	*ft_calloc(size_t count, size_t size) // 2 argumentos de tipo size_t: la ca
     size_t	i; // índice para acceder a cada byte.
 
 	total = count * size; // calcula el tamaño total de b = multiplicando el número de elementos por su tamaño. 
-	mem = malloc(total); // asigna memoria y almacena el puntero en 'p'.
+	mem = malloc(total); // asigna memoria y almacena el puntero en 'mem'.
 	if (total == NULL) // si 'malloc' falla y devuelve NULL...
 		return (NULL); // .. la fx devuelve NULL para indicar el fallo en la asignación de memoria.
 	i = 0;
